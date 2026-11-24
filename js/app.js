@@ -29,7 +29,14 @@
   var DEFAULT_DETAILS =
     "<p class=\"hint\">Click a route, marker, or trail on the map for more information.</p>";
 
-  var walkSelect = document.getElementById("walk-select");
+  var walkPickerEl = document.getElementById("walk-picker");
+  var walkListEl = document.getElementById("walk-list");
+  var onboardingEl = document.getElementById("onboarding");
+  var onboardingListEl = document.getElementById("onboarding-list");
+
+  function isMobileLayout() {
+    return window.matchMedia("(max-width: 760px)").matches;
+  }
 
   var routeLayer = L.layerGroup().addTo(map);
   var pointsLayer = L.layerGroup().addTo(map);
@@ -67,24 +74,44 @@
   }
 
   function openSidebarOnMobile() {
-    if (window.matchMedia("(max-width: 760px)").matches) {
+    if (isMobileLayout()) {
       sidebar.classList.remove("collapsed");
       document.getElementById("toggleSidebar").setAttribute("aria-expanded", "true");
     }
   }
 
+  // Centers the map on a point, but on mobile shifts the center up so the
+  // point lands in the strip of map still visible above the floating sidebar.
+  function flyToPoint(lat, lng, minZoom) {
+    var targetZoom = Math.max(map.getZoom(), minZoom);
+    var latlng = L.latLng(lat, lng);
+
+    if (isMobileLayout()) {
+      var mapSize = map.getSize();
+      var sidebarHeight = sidebar.offsetHeight + 12; // + bottom margin
+      var visibleHeight = Math.max(mapSize.y - sidebarHeight, 80);
+      var desiredY = visibleHeight / 2;
+      var shiftDown = (mapSize.y / 2) - desiredY;
+      var targetPoint = map.project(latlng, targetZoom).add(L.point(0, shiftDown));
+      latlng = map.unproject(targetPoint, targetZoom);
+    }
+
+    map.flyTo(latlng, targetZoom, { duration: 0.5 });
+  }
+
   function openWalk(routeId, index) {
     currentWalk = { routeId: routeId, index: index };
     updateMarkerIcons();
+    onboardingEl.classList.add("hidden");
     openSidebarOnMobile();
-    walkSelect.value = routeId;
+    walkPickerEl.classList.add("hidden");
     renderWalkStep();
   }
 
   function exitWalk() {
     currentWalk = null;
     updateMarkerIcons();
-    walkSelect.value = "";
+    walkPickerEl.classList.remove("hidden");
     detailsEl.innerHTML = DEFAULT_DETAILS;
   }
 
@@ -104,8 +131,6 @@
     var n = g.points.length;
     var atStart = currentWalk.index === 0;
     var atEnd = currentWalk.index === n - 1;
-
-    map.flyTo([pt.lat, pt.lng], Math.max(map.getZoom(), 14), { duration: 0.5 });
 
     var pct = n > 1 ? Math.round((currentWalk.index / (n - 1)) * 100) : 100;
 
@@ -133,6 +158,8 @@
     document.getElementById("walk-prev").addEventListener("click", function () { stepWalk(-1); });
     document.getElementById("walk-next").addEventListener("click", function () { stepWalk(1); });
     document.getElementById("walk-exit").addEventListener("click", exitWalk);
+
+    flyToPoint(pt.lat, pt.lng, 14);
   }
 
   document.addEventListener("keydown", function (e) {
@@ -144,26 +171,42 @@
   function showDetails(title, meta, desc) {
     currentWalk = null;
     updateMarkerIcons();
-    walkSelect.value = "";
+    walkPickerEl.classList.remove("hidden");
     detailsEl.innerHTML =
       "<h3>" + title + "</h3>" +
       (meta ? '<p class="meta">' + meta + "</p>" : "") +
       (desc ? '<p class="desc">' + desc + "</p>" : "");
   }
 
-  function renderWalkSelect() {
+  function routeButtonsHtml(ids) {
+    return ids.map(function (id) {
+      var g = walkGroups[id];
+      return '<li><button type="button" class="route-btn" data-route="' + id + '">' +
+        '<span class="route-btn-name">' + g.name + "</span>" +
+        '<span class="meta">' + g.distanceKm + " km &middot; " + g.difficulty + "</span>" +
+        "</button></li>";
+    }).join("");
+  }
+
+  function bindRouteButtons(container, ids) {
+    ids.forEach(function (id) {
+      var btn = container.querySelector('.route-btn[data-route="' + id + '"]');
+      btn.addEventListener("click", function () { openWalk(id, 0); });
+    });
+  }
+
+  function renderWalkList() {
     var ids = Object.keys(walkGroups);
     if (!ids.length) { return; }
-    ids.forEach(function (id) {
-      var g = walkGroups[id];
-      var opt = document.createElement("option");
-      opt.value = id;
-      opt.textContent = g.name + " (" + g.distanceKm + " km, " + g.difficulty + ")";
-      walkSelect.appendChild(opt);
-    });
-    walkSelect.addEventListener("change", function () {
-      if (walkSelect.value) { openWalk(walkSelect.value, 0); } else { exitWalk(); }
-    });
+    walkListEl.innerHTML = routeButtonsHtml(ids);
+    bindRouteButtons(walkListEl, ids);
+  }
+
+  function renderOnboarding() {
+    var ids = Object.keys(walkGroups);
+    if (!ids.length) { return; }
+    onboardingListEl.innerHTML = routeButtonsHtml(ids);
+    bindRouteButtons(onboardingListEl, ids);
   }
 
   fetch("data/tdf-route.geojson")
@@ -262,7 +305,8 @@
         walkGroups[routeId] = group;
       });
 
-      renderWalkSelect();
+      renderWalkList();
+      renderOnboarding();
     })
     .catch(function (err) { console.error("Failed to load walking routes:", err); });
 
@@ -282,7 +326,7 @@
     var collapsed = sidebar.classList.toggle("collapsed");
     toggleBtn.setAttribute("aria-expanded", String(!collapsed));
   });
-  if (window.matchMedia("(max-width: 760px)").matches) {
+  if (isMobileLayout()) {
     sidebar.classList.add("collapsed");
     toggleBtn.setAttribute("aria-expanded", "false");
   }

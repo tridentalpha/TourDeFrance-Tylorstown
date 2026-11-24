@@ -69,6 +69,78 @@ html, body {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+.onboarding {
+  position: absolute;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(17, 19, 20, 0.55);
+}
+
+.onboarding.hidden {
+  display: none;
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 420px;
+  max-height: calc(100% - 2rem);
+  overflow-y: auto;
+  background: var(--panel-bg);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  padding: 1.25rem;
+}
+
+.onboarding-card h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1.05rem;
+}
+
+.onboarding-card > .hint {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.onboarding-list,
+.walk-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.route-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  width: 100%;
+  text-align: left;
+  background: #f6f7f8;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.route-btn:hover {
+  border-color: #2f8f4e;
+  background: #eef8f0;
+}
+
+.route-btn-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
 .sidebar h3 {
   font-size: 0.78rem;
   text-transform: uppercase;
@@ -117,23 +189,12 @@ html, body {
   margin-bottom: 0.9rem;
 }
 
-.walk-picker label {
-  display: block;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  margin-bottom: 0.4rem;
+.walk-picker.hidden {
+  display: none;
 }
 
-.walk-picker select {
-  width: 100%;
-  padding: 0.5rem 0.55rem;
-  font-size: 0.88rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #fff;
-  color: var(--ink);
+.walk-list {
+  margin-bottom: 0.4rem;
 }
 
 .walk-picker .hint {
@@ -394,8 +455,12 @@ html, body {
     left: 12px;
     right: 12px;
     width: auto;
-    max-height: calc(100% - 24px);
+    max-height: 42%;
     transform: translateY(0);
+  }
+
+  .onboarding-card {
+    max-height: calc(100% - 2rem);
   }
 
   .sidebar.collapsed {

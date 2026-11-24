@@ -18,11 +18,9 @@
 
   <div class="layout">
     <aside id="sidebar" class="sidebar">
-      <section class="walk-picker">
-        <label for="walk-select">Walk a route</label>
-        <select id="walk-select">
-          <option value="">Choose a walk&hellip;</option>
-        </select>
+      <section id="walk-picker" class="walk-picker">
+        <h3>Walk a route</h3>
+        <ul id="walk-list" class="walk-list"></ul>
         <p class="hint">Or click any trail on the map.</p>
       </section>
 
@@ -54,6 +52,16 @@
     </aside>
 
     <main id="map"></main>
+
+    <div id="onboarding" class="onboarding" role="dialog" aria-modal="true" aria-label="Choose a walking route">
+      <div class="onboarding-card">
+        <h2>Choose a walk to get started</h2>
+        <p class="hint">Pick a walking route near the stage to see its points of interest.</p>
+        <ul id="onboarding-list" class="onboarding-list">
+          <li class="hint">Loading walks&hellip;</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
