@@ -3,6 +3,7 @@
 
   --accent: #c8102e;
   --accent-dark: #8c0a20;
+  --header-bg: var(--accent);
   --ink: #1d2024;
   --muted: #5b6168;
   --panel-bg: #ffffff;
@@ -24,6 +25,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --header-bg: var(--accent-dark);
     --ink: #e8e9ea;
     --muted: #9aa0a6;
     --panel-bg: #1c1e22;
@@ -83,7 +85,7 @@ html, body {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.6rem 1rem;
-  background: var(--accent);
+  background: var(--header-bg);
   color: #fff;
 }
 
@@ -135,16 +137,21 @@ html, body {
   height: calc(var(--app-height, 100vh) - var(--header-height, 48px));
 }
 
-/* Fixed (not confined to .layout's safe-area height) so the map fills
-   the true full screen, including behind a floating mobile toolbar.
-   Only interactive UI (sidebar, onboarding) needs to stay inside the
-   safe area measured in js/app.js. */
+/* Fixed and sized to the *large* viewport (100lvh = full screen,
+   toolbar assumed collapsed) so the map fills the true full screen,
+   including behind a floating mobile toolbar, rather than stopping at
+   the safe area carved out for the sidebar. `position:fixed` with
+   `bottom:0` is unreliable for this across iOS Safari versions, so
+   height is set explicitly instead. Only interactive UI (sidebar,
+   onboarding) needs to stay inside the safe area measured in
+   js/app.js. */
 #map {
   position: fixed;
   top: var(--header-height, 48px);
   left: 0;
   right: 0;
-  bottom: 0;
+  height: calc(100vh - var(--header-height, 48px));
+  height: calc(100lvh - var(--header-height, 48px));
 }
 
 .sidebar {
