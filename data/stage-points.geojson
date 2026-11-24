@@ -1,0 +1,75 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Start — Pontypridd", "type": "start" },
+      "geometry": { "type": "Point", "coordinates": [-3.3429, 51.6020] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Porth", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4173, 51.6324] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Tonypandy", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4425, 51.6236] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Llwynypia", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4531, 51.6372] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Ystrad", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4682, 51.6462] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Pentre", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4791, 51.6590] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Treorchy", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4983, 51.6713] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Treherbert", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.5083, 51.6975] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "KOM — Bwlch Mountain Pass", "type": "kom", "description": "Summit crossing between the Rhondda Fawr and Rhondda Fach valleys (~550m)." },
+      "geometry": { "type": "Point", "coordinates": [-3.4850, 51.7150] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Maerdy", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4660, 51.7040] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Ferndale", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4540, 51.6840] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Tylorstown", "type": "feature-town", "description": "The village this project is named for — on the Rhondda Fach branch of the imagined route." },
+      "geometry": { "type": "Point", "coordinates": [-3.4435, 51.6757] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Dinas", "type": "town" },
+      "geometry": { "type": "Point", "coordinates": [-3.4300, 51.6460] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Finish — Penrhys", "type": "finish", "description": "Mountain-top finish on the plateau between the two valleys (~485m), near the Penrhys viewpoint and shrine." },
+      "geometry": { "type": "Point", "coordinates": [-3.4330, 51.6610] }
+    }
+  ]
+}

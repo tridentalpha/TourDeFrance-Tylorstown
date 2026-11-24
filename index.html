@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tour de France 2027 &mdash; Rhondda Valleys</title>
+  <meta name="description" content="An interactive fan map of an imagined Tour de France stage through the Rhondda Valleys, with nearby walking routes to explore.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Tour de France 2027 &mdash; Rhondda Valleys</h1>
+    <button id="toggleSidebar" aria-label="Toggle panel" aria-expanded="true">&#9776;</button>
+  </header>
+
+  <div class="layout">
+    <aside id="sidebar" class="sidebar">
+      <details class="disclosure disclosure-info">
+        <summary>About this map</summary>
+        <p class="disclaimer">
+          This is a <strong>fan-made, illustrative</strong> map imagining a Tour de France-style stage
+          through the Rhondda Fawr and Rhondda Fach valleys &mdash; it is not an official route.
+          Walking routes shown are approximate; always check an OS map and current conditions before setting out.
+        </p>
+      </details>
+
+      <section class="walk-picker">
+        <label for="walk-select">Walk a route</label>
+        <select id="walk-select">
+          <option value="">Choose a walk&hellip;</option>
+        </select>
+        <p class="hint">Or click any trail on the map.</p>
+      </section>
+
+      <section id="details" class="details-panel">
+        <p class="hint">Click a route, marker, or trail on the map for more information.</p>
+      </section>
+
+      <details class="disclosure">
+        <summary>Map settings</summary>
+
+        <h3>Layers</h3>
+        <label class="layer-toggle"><input type="checkbox" id="toggle-route" checked> <span class="swatch route"></span> Stage route</label>
+        <label class="layer-toggle"><input type="checkbox" id="toggle-points" checked> <span class="swatch points"></span> Start / finish / towns</label>
+        <label class="layer-toggle"><input type="checkbox" id="toggle-walks" checked> <span class="swatch walks"></span> Walking routes</label>
+
+        <h3>Base map</h3>
+        <label class="layer-toggle"><input type="radio" name="basemap" id="base-street" checked> Street</label>
+        <label class="layer-toggle"><input type="radio" name="basemap" id="base-topo"> Terrain / topo</label>
+
+        <h3>Legend</h3>
+        <ul class="legend">
+          <li><span class="dot start"></span> Start</li>
+          <li><span class="dot finish"></span> Finish</li>
+          <li><span class="dot kom"></span> Mountain pass (KOM)</li>
+          <li><span class="dot town"></span> Town on route</li>
+          <li><span class="line walk"></span> Walking route</li>
+        </ul>
+      </details>
+    </aside>
+
+    <main id="map"></main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
