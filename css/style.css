@@ -16,6 +16,7 @@ html, body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: var(--ink);
   background: var(--page-bg);
+  touch-action: manipulation;
 }
 
 .topbar {
@@ -73,6 +74,7 @@ html, body {
 .layout {
   position: relative;
   height: calc(100vh - 48px);
+  height: calc(100dvh - 48px);
 }
 
 #map {
@@ -374,9 +376,9 @@ html, body {
 
   .sidebar {
     top: auto;
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    left: calc(12px + env(safe-area-inset-left, 0px));
+    right: calc(12px + env(safe-area-inset-right, 0px));
     width: auto;
     max-height: 54%;
     padding: 0.7rem;
