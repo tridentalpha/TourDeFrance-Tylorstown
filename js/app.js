@@ -4,24 +4,10 @@
   var map = L.map("map", { zoomControl: false }).setView([51.665, -3.47], 12);
   L.control.zoom({ position: "topright" }).addTo(map);
 
-  var streetLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
-
-  var topoLayer = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-    maxZoom: 17,
-    attribution: 'Map data: &copy; OpenStreetMap contributors, SRTM | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'
-  });
-
-  document.getElementById("base-street").addEventListener("change", function () {
-    map.removeLayer(topoLayer);
-    streetLayer.addTo(map);
-  });
-  document.getElementById("base-topo").addEventListener("change", function () {
-    map.removeLayer(streetLayer);
-    topoLayer.addTo(map);
-  });
 
   var detailsEl = document.getElementById("details");
   var sidebar = document.getElementById("sidebar");
@@ -309,16 +295,6 @@
       renderOnboarding();
     })
     .catch(function (err) { console.error("Failed to load walking routes:", err); });
-
-  document.getElementById("toggle-route").addEventListener("change", function (e) {
-    if (e.target.checked) { map.addLayer(routeLayer); } else { map.removeLayer(routeLayer); }
-  });
-  document.getElementById("toggle-points").addEventListener("change", function (e) {
-    if (e.target.checked) { map.addLayer(pointsLayer); } else { map.removeLayer(pointsLayer); }
-  });
-  document.getElementById("toggle-walks").addEventListener("change", function (e) {
-    if (e.target.checked) { map.addLayer(walksLayer); } else { map.removeLayer(walksLayer); }
-  });
 
   // Mobile sidebar toggle
   var toggleBtn = document.getElementById("toggleSidebar");
