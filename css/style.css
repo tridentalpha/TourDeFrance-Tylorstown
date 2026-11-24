@@ -78,9 +78,16 @@ html, body {
   height: calc(var(--app-height, 100vh) - var(--header-height, 48px));
 }
 
+/* Fixed (not confined to .layout's safe-area height) so the map fills
+   the true full screen, including behind a floating mobile toolbar.
+   Only interactive UI (sidebar, onboarding) needs to stay inside the
+   safe area measured in js/app.js. */
 #map {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: var(--header-height, 48px);
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .sidebar {
