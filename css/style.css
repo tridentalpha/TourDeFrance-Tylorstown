@@ -65,6 +65,11 @@
   .leaflet-bar a:hover {
     background: var(--surface-hover);
   }
+
+  .map-attribution {
+    background: rgba(28, 30, 34, 0.85) !important;
+    color: var(--ink) !important;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -433,6 +438,32 @@ html, body {
   background: var(--accent);
   box-shadow: 0 0 0 3px rgba(200,16,46,0.35);
   font-size: 0.8rem;
+}
+
+.map-attribution {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.map-attribution .attribution-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.map-attribution .attribution-text {
+  display: none;
+  white-space: nowrap;
+}
+
+.map-attribution.expanded .attribution-text {
+  display: inline;
 }
 
 .leaflet-popup-content h3 {

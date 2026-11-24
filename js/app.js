@@ -14,13 +14,36 @@
   }
   syncViewportMetrics();
 
-  var map = L.map("map", { zoomControl: false }).setView([51.665, -3.47], 12);
+  var map = L.map("map", { zoomControl: false, attributionControl: false }).setView([51.665, -3.47], 12);
   L.control.zoom({ position: "topright" }).addTo(map);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+
+  // Required attribution, tucked behind a small toggle so it doesn't
+  // compete with the map for attention while staying easy to find.
+  var CollapsibleAttribution = L.Control.extend({
+    options: { position: "bottomright" },
+    onAdd: function () {
+      var container = L.DomUtil.create("div", "leaflet-control-attribution map-attribution");
+      container.innerHTML =
+        '<button type="button" class="attribution-toggle" aria-label="Show map data attribution" aria-expanded="false">&#9432;</button>' +
+        '<span class="attribution-text">' +
+          '<a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | ' +
+          "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors" +
+        "</span>";
+      L.DomEvent.disableClickPropagation(container);
+      var toggle = container.querySelector(".attribution-toggle");
+      toggle.addEventListener("click", function () {
+        var expanded = container.classList.toggle("expanded");
+        toggle.setAttribute("aria-expanded", String(expanded));
+      });
+      return container;
+    }
+  });
+  map.addControl(new CollapsibleAttribution());
 
   function handleViewportResize() {
     syncViewportMetrics();
