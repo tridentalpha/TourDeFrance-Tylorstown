@@ -20,6 +20,17 @@
   var onboardingEl = document.getElementById("onboarding");
   var onboardingListEl = document.getElementById("onboarding-list");
 
+  var topbarTitleEl = document.getElementById("topbarTitle");
+  var topbarProgressEl = document.getElementById("topbarProgress");
+  var topbarProgressFillEl = document.getElementById("topbarProgressFill");
+  var DEFAULT_TITLE = topbarTitleEl.textContent;
+
+  function resetTopbar() {
+    topbarTitleEl.textContent = DEFAULT_TITLE;
+    topbarProgressEl.classList.remove("active");
+    topbarProgressFillEl.style.width = "0%";
+  }
+
   function isMobileLayout() {
     return window.matchMedia("(max-width: 760px)").matches;
   }
@@ -98,6 +109,7 @@
     currentWalk = null;
     updateMarkerIcons();
     walkPickerEl.classList.remove("hidden");
+    resetTopbar();
     detailsEl.innerHTML = DEFAULT_DETAILS;
   }
 
@@ -120,14 +132,16 @@
 
     var pct = n > 1 ? Math.round((currentWalk.index / (n - 1)) * 100) : 100;
 
+    topbarTitleEl.textContent = g.name;
+    topbarProgressEl.classList.add("active");
+    topbarProgressFillEl.style.width = pct + "%";
+
     detailsEl.innerHTML =
       '<div class="walk-slideshow">' +
         '<div class="walk-slideshow-head">' +
-          '<p class="walk-route-name">' + g.name + "</p>" +
+          '<p class="walk-progress">Point ' + (currentWalk.index + 1) + " of " + n + "</p>" +
           '<button id="walk-exit" type="button" class="icon-btn" aria-label="Exit walk" title="Exit walk">&times;</button>' +
         "</div>" +
-        '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
-        '<p class="walk-progress">Point ' + (currentWalk.index + 1) + " of " + n + "</p>" +
         "<h3>" + pt.title + "</h3>" +
         '<div class="video-placeholder" aria-label="Video placeholder for ' + pt.title + '">' +
           '<span class="play-icon" aria-hidden="true">&#9654;</span>' +
@@ -158,6 +172,7 @@
     currentWalk = null;
     updateMarkerIcons();
     walkPickerEl.classList.remove("hidden");
+    resetTopbar();
     detailsEl.innerHTML =
       "<h3>" + title + "</h3>" +
       (meta ? '<p class="meta">' + meta + "</p>" : "") +
