@@ -113,14 +113,6 @@ html, body {
   transform: rotate(90deg);
 }
 
-.disclosure-info summary { color: var(--accent-dark); }
-
-.disclaimer {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin: 0;
-}
-
 .walk-picker {
   margin-bottom: 0.9rem;
 }

@@ -1,0 +1,34 @@
+Route ID,Route Name,Distance (km),Difficulty,Point Order,Point Title,Point Description,Latitude,Longitude
+penrhys-loop,Penrhys Viewpoint Loop,4.5,Moderate,1,Penrhys Car Park (Start),"Start at the car park on the Penrhys plateau, right by the imagined stage finish.",51.661,-3.433
+penrhys-loop,Penrhys Viewpoint Loop,4.5,Moderate,2,Our Lady of Penrhys Shrine,"A site of pilgrimage since medieval times, with a modern statue marking the original shrine.",51.664,-3.428
+penrhys-loop,Penrhys Viewpoint Loop,4.5,Moderate,3,Panoramic Viewpoint,"The high point of the walk, with sweeping views down both the Rhondda Fawr and Rhondda Fach valleys.",51.66,-3.426
+penrhys-loop,Penrhys Viewpoint Loop,4.5,Moderate,4,Woodland Path Junction,The route dips through a stretch of young woodland before turning back towards the start.,51.657,-3.43
+penrhys-loop,Penrhys Viewpoint Loop,4.5,Moderate,5,Return Descent,"A gentle descent back towards the plateau, with Tylorstown and Ferndale visible below.",51.658,-3.436
+penrhys-loop,Penrhys Viewpoint Loop,4.5,Moderate,6,Penrhys Car Park (Finish),"Loop complete, back at the car park.",51.661,-3.433
+cwm-clydach,Cwm Clydach Nature Reserve Trail,3.2,Easy,1,Reserve Entrance (Start),"Enter the Cwm Clydach National Nature Reserve, close to the route near Llwynypia.",51.629,-3.465
+cwm-clydach,Cwm Clydach Nature Reserve Trail,3.2,Easy,2,Ancient Oak Woodland,One of the largest surviving ancient oak woodlands in the Rhondda valleys.,51.626,-3.47
+cwm-clydach,Cwm Clydach Nature Reserve Trail,3.2,Easy,3,Clydach Brook Crossing,A footbridge crosses the brook that gives the reserve its name.,51.622,-3.466
+cwm-clydach,Cwm Clydach Nature Reserve Trail,3.2,Easy,4,Bird Hide,"A quiet spot to watch woodland birds, including regular sightings of woodpeckers.",51.624,-3.459
+cwm-clydach,Cwm Clydach Nature Reserve Trail,3.2,Easy,5,Meadow Path,An open meadow section rich in wildflowers through the summer months.,51.628,-3.46
+cwm-clydach,Cwm Clydach Nature Reserve Trail,3.2,Easy,6,Reserve Entrance (Finish),"Loop complete, back at the entrance.",51.629,-3.465
+bwlch-ridge,Bwlch Mountain Ridge Walk,6.0,Hard,1,Treherbert Trailhead (Start),"Begin at the head of the Rhondda Fawr, where the imagined stage route also climbs.",51.6975,-3.5083
+bwlch-ridge,Bwlch Mountain Ridge Walk,6.0,Hard,2,Lower Ridge Ascent,"A steady climb onto open moorland, with the valley falling away behind you.",51.708,-3.498
+bwlch-ridge,Bwlch Mountain Ridge Walk,6.0,Hard,3,Bwlch Summit (KOM),"The high point of the ridge, right at the mountain pass the stage route crosses between the two valleys (~550m).",51.715,-3.485
+bwlch-ridge,Bwlch Mountain Ridge Walk,6.0,Hard,4,Descent Toward Maerdy,An exposed descent with wide views down the Rhondda Fach towards Maerdy and Ferndale.,51.711,-3.472
+bwlch-ridge,Bwlch Mountain Ridge Walk,6.0,Hard,5,Maerdy Trailhead (Finish),"Finish at Maerdy, at the head of the Rhondda Fach.",51.704,-3.466
+llyn-fawr,Llyn Fawr Reservoir Circular,5.5,Moderate,1,Reservoir Car Park (Start),"Start at the car park by Llyn Fawr, a short detour above Treherbert near Rhigos.",51.723,-3.555
+llyn-fawr,Llyn Fawr Reservoir Circular,5.5,Moderate,2,Dam Wall Viewpoint,Views along the dam wall across the reservoir to the mountains beyond.,51.726,-3.562
+llyn-fawr,Llyn Fawr Reservoir Circular,5.5,Moderate,3,Northern Shoreline,"A quiet stretch of shoreline path, popular with anglers and birdwatchers.",51.731,-3.56
+llyn-fawr,Llyn Fawr Reservoir Circular,5.5,Moderate,4,Rhigos Mountain Views,Open views towards the Rhigos mountain road and the Brecon Beacons beyond.,51.73,-3.55
+llyn-fawr,Llyn Fawr Reservoir Circular,5.5,Moderate,5,Eastern Path,The path curves back along the eastern shore towards the car park.,51.725,-3.548
+llyn-fawr,Llyn Fawr Reservoir Circular,5.5,Moderate,6,Reservoir Car Park (Finish),"Loop complete, back at the car park.",51.723,-3.555
+heritage-park,Rhondda Heritage Park Trail,2.5,Easy,1,Heritage Park Entrance (Start),"Start at the former Lewis Merthyr Colliery site at Trehafod, near the stage start at Pontypridd.",51.615,-3.385
+heritage-park,Rhondda Heritage Park Trail,2.5,Easy,2,Lewis Merthyr Colliery Headframe,"The preserved pithead winding gear, a landmark of the Rhondda's mining heritage.",51.618,-3.39
+heritage-park,Rhondda Heritage Park Trail,2.5,Easy,3,Fan House & Museum,"Home to the colliery's original ventilation fan house, now part of the museum.",51.615,-3.395
+heritage-park,Rhondda Heritage Park Trail,2.5,Easy,4,Riverside Path,"A level, family-friendly stretch alongside the Rhondda river.",51.612,-3.39
+heritage-park,Rhondda Heritage Park Trail,2.5,Easy,5,Heritage Park Entrance (Finish),"Loop complete, back at the entrance.",51.615,-3.385
+maerdy-forest,Maerdy Forest Walk,4.0,Moderate,1,Maerdy Forest Car Park (Start),"Start above Maerdy at the head of the Rhondda Fach, close to where the route crosses the mountain pass.",51.704,-3.466
+maerdy-forest,Maerdy Forest Walk,4.0,Moderate,2,Forestry Viewpoint,A clearing in the forestry plantation with views back down the valley.,51.709,-3.46
+maerdy-forest,Maerdy Forest Walk,4.0,Moderate,3,Old Tramroad Path,The walk follows the route of a disused mountain tramroad for a short stretch.,51.707,-3.455
+maerdy-forest,Maerdy Forest Walk,4.0,Moderate,4,Mountain Stream Crossing,A small stepping-stone crossing over a mountain stream.,51.702,-3.458
+maerdy-forest,Maerdy Forest Walk,4.0,Moderate,5,Maerdy Forest Car Park (Finish),"Loop complete, back at the car park.",51.704,-3.466
