@@ -1,6 +1,19 @@
 (function () {
   "use strict";
 
+  // Mobile browsers (notably Safari) show/hide their own toolbar without
+  // reliably updating `dvh`, so measure the real visible area with JS and
+  // expose it as CSS custom properties the layout can size against.
+  function syncViewportMetrics() {
+    var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+    document.documentElement.style.setProperty("--app-height", vh + "px");
+    var header = document.querySelector(".topbar");
+    if (header) {
+      document.documentElement.style.setProperty("--header-height", header.offsetHeight + "px");
+    }
+  }
+  syncViewportMetrics();
+
   var map = L.map("map", { zoomControl: false }).setView([51.665, -3.47], 12);
   L.control.zoom({ position: "topright" }).addTo(map);
 
@@ -8,6 +21,16 @@
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+
+  function handleViewportResize() {
+    syncViewportMetrics();
+    map.invalidateSize();
+  }
+  window.addEventListener("resize", handleViewportResize);
+  window.addEventListener("orientationchange", handleViewportResize);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", handleViewportResize);
+  }
 
   var detailsEl = document.getElementById("details");
   var sidebar = document.getElementById("sidebar");
