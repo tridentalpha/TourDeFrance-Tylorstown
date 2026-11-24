@@ -191,6 +191,29 @@
     if (e.key === "ArrowLeft") { stepWalk(-1); }
   });
 
+  // Swipe left/right on the slideshow card to step through points of interest.
+  (function enableSwipeNavigation() {
+    var SWIPE_THRESHOLD = 40;
+    var startX = null;
+    var startY = null;
+
+    detailsEl.addEventListener("touchstart", function (e) {
+      if (!currentWalk || !e.touches.length) { return; }
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    detailsEl.addEventListener("touchend", function (e) {
+      if (!currentWalk || startX === null || !e.changedTouches.length) { return; }
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      startX = null;
+      startY = null;
+      if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy) * 1.5) { return; }
+      stepWalk(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  })();
+
   function showDetails(title, meta, desc) {
     currentWalk = null;
     updateMarkerIcons();

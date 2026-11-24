@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   --accent: #c8102e;
   --accent-dark: #8c0a20;
   --ink: #1d2024;
@@ -6,6 +8,61 @@
   --panel-bg: #ffffff;
   --page-bg: #f3f4f6;
   --border: #e1e3e6;
+  --surface: #f6f7f8;
+  --surface-hover: #eef8f0;
+  --details-bg: #fafbfb;
+  --button-bg: #ffffff;
+  --icon-hover-bg: #f0f1f2;
+  --placeholder-stripe-a: #eef1f0;
+  --placeholder-stripe-b: #e4e8e7;
+  --placeholder-border: #c6cbce;
+  --shadow-soft: rgba(0, 0, 0, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.18);
+  --shadow-color-strong: rgba(0, 0, 0, 0.35);
+  --backdrop: rgba(17, 19, 20, 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8e9ea;
+    --muted: #9aa0a6;
+    --panel-bg: #1c1e22;
+    --page-bg: #101113;
+    --border: #33363b;
+    --surface: #26292e;
+    --surface-hover: #1f3327;
+    --details-bg: #202327;
+    --button-bg: #24262a;
+    --icon-hover-bg: #2b2e33;
+    --placeholder-stripe-a: #26292e;
+    --placeholder-stripe-b: #2e3237;
+    --placeholder-border: #3c4046;
+    --shadow-soft: rgba(0, 0, 0, 0.4);
+    --shadow-color: rgba(0, 0, 0, 0.45);
+    --shadow-color-strong: rgba(0, 0, 0, 0.6);
+    --backdrop: rgba(0, 0, 0, 0.65);
+  }
+
+  /* Dim the map tiles slightly so they sit better against the dark UI */
+  .leaflet-tile-pane {
+    filter: brightness(0.82) saturate(0.9);
+  }
+
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
+    background: var(--panel-bg);
+    color: var(--ink);
+  }
+
+  .leaflet-bar a {
+    background: var(--panel-bg);
+    color: var(--ink);
+    border-bottom-color: var(--border) !important;
+  }
+
+  .leaflet-bar a:hover {
+    background: var(--surface-hover);
+  }
 }
 
 * { box-sizing: border-box; }
@@ -100,7 +157,7 @@ html, body {
   background: var(--panel-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  box-shadow: 0 8px 28px var(--shadow-color);
   padding: 1rem;
   z-index: 450;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -114,7 +171,7 @@ html, body {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba(17, 19, 20, 0.55);
+  background: var(--backdrop);
 }
 
 .onboarding.hidden {
@@ -128,7 +185,7 @@ html, body {
   overflow-y: auto;
   background: var(--panel-bg);
   border-radius: 12px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 40px var(--shadow-color-strong);
   padding: 1.25rem;
 }
 
@@ -160,17 +217,18 @@ html, body {
   gap: 0.15rem;
   width: 100%;
   text-align: left;
-  background: #f6f7f8;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
   font: inherit;
   cursor: pointer;
+  color: var(--ink);
 }
 
 .route-btn:hover {
   border-color: #2f8f4e;
-  background: #eef8f0;
+  background: var(--surface-hover);
 }
 
 .route-btn-name {
@@ -211,7 +269,7 @@ html, body {
   border-radius: 8px;
   padding: 0.8rem 0.85rem;
   margin-bottom: 0.9rem;
-  background: #fafbfb;
+  background: var(--details-bg);
   min-height: 3rem;
 }
 
@@ -253,8 +311,8 @@ html, body {
   justify-content: center;
   gap: 0.4rem;
   margin: 0.5rem 0 0.6rem;
-  background: repeating-linear-gradient(135deg, #eef1f0, #eef1f0 10px, #e4e8e7 10px, #e4e8e7 20px);
-  border: 1px dashed #c6cbce;
+  background: repeating-linear-gradient(135deg, var(--placeholder-stripe-a), var(--placeholder-stripe-a) 10px, var(--placeholder-stripe-b) 10px, var(--placeholder-stripe-b) 20px);
+  border: 1px dashed var(--placeholder-border);
   border-radius: 8px;
   color: var(--muted);
 }
@@ -263,8 +321,8 @@ html, body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background: var(--button-bg);
+  box-shadow: 0 2px 6px var(--shadow-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,7 +350,7 @@ html, body {
 
 .icon-btn:hover {
   color: var(--accent);
-  background: #f0f1f2;
+  background: var(--icon-hover-bg);
 }
 
 .walk-progress {
@@ -324,7 +382,7 @@ html, body {
   font-weight: 600;
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: #fff;
+  background: var(--button-bg);
   cursor: pointer;
   color: var(--ink);
 }
@@ -332,7 +390,7 @@ html, body {
 .walk-controls button:hover:not(:disabled) {
   border-color: #2f8f4e;
   color: #2f8f4e;
-  background: #eef8f0;
+  background: var(--surface-hover);
 }
 
 .walk-controls button:disabled {
